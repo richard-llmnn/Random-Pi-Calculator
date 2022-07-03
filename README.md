@@ -4,7 +4,7 @@
 
 ## How to use this program?
 
-Please ensure that you are using Python 3 (better `> 3.10`).  
+Please ensure that you are using Python 3 (better `> 3.10`). You **don't** need any other dependencies!  
 You can configure the programs behavior by editing the `constants.py` file.  
 Now you can run the program by typing `python3 app.py` in the console and press enter. 
 

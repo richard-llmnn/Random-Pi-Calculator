@@ -1,8 +1,8 @@
 ### setup constants
 
 arrow_length = 3                            # length of the coordinate system arrows in pixel, 0 = hide
-draw_speed = 0                              # speed to draw the complete coordinate system, 1: slowest, 6: normal, 10: fast, 0: fastest
-dot_generation_speed = 5                    # number between 0 and ~50
+draw_speed = 6                              # speed to draw the complete coordinate system, 1: slowest, 6: normal, 10: fast, 0: fastest
+dot_generation_speed = 5                    # number between 0 and ~50, the higher the value, the slower the program
 line_width = 1                              # width of the coordinate system lines
 bg_color = "#ffffff"                        # select background color by name ("white", "red") or by hex-code
 draw_color = "#000000"                      # color of the coordinate system
