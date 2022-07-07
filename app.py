@@ -1,7 +1,9 @@
 from turtle import *
 from constants import *
-from math import sqrt
+from math import sqrt, ceil
 from random import random
+from time import time
+from datetime import datetime
 
 def angle(angle):
 	setheading(angle)
@@ -94,19 +96,14 @@ if show_quarter_circle:
 	up()
 
 ###  add random dots
-speed(0) # set speed to 0 and only set the delay
-if dot_amount > 10_000:
-	if dot_amount < 50_000:
-		tracer(1000)
-	elif dot_amount < 100_000:
-		tracer(5000)
-	elif dot_amount < 500_000:
-		tracer(10_000)
-	elif dot_amount > 999_999:
-		tracer(50_000)
+speed(0)
 delay(dot_generation_speed)
+tracer(dot_print_tracer)
 
+start_time = time()
+dot_interval = int(ceil(dot_amount / max_visible_dots)) # only show the xth dot
 dots_in_circle = 0
+dots_in_window_visible = 0
 for i in range(1, dot_amount + 1):
 	rand_x = random() * 100
 	rand_y = random() * 100
@@ -119,20 +116,24 @@ for i in range(1, dot_amount + 1):
 	else:
 		color(dot_outside_color)
 
-	# do not print dots if they are out of range
-	if only_show_dot_in_range == False or between(range_to_zero, only_show_dot_in_range):
+	# do not print dots if they are out of interval
+	if (i - 1) % dot_interval == 0:
 		goto(rand_x, rand_y)
 		down()
 		small_dot()
 		if show_dot_range:
 			write(int(range_to_zero), font=("Arial", dot_range_font_size, "normal"))
 		up()
+		dots_in_window_visible += 1
 
 	calc_pi = round(4 * dots_in_circle / i, 5)
-	log(f"Current calculated value of pi: {calc_pi}")
 
-	if show_calculated_pi and (i == dot_amount or i % update_pi_text_interval_size == 0):
-		# remove the text from the window
+	if i % log_pi_every_x_iteration == 0:
+		ct = datetime.now()
+		print(f"{ct.hour}:{ct.minute}:{ct.second}: Current calculated value of pi: {calc_pi} | Generated dots: {i} | Visible dots: {dots_in_window_visible}")
+
+	if i == dot_amount:
+		# clear area
 		color(bg_color)
 		fillcolor(bg_color)
 		goto(0, -3)
@@ -153,12 +154,16 @@ for i in range(1, dot_amount + 1):
 		color(draw_color)
 		goto(2, -6)
 		down()
-		if i == dot_amount:
-			string = f"Calculation Completed! \n Finally calculated PI is: {calc_pi} | Generated dots: {i}"
-		else:
-			string = f"Calculated PI is: {calc_pi} | Generated dots: {i}"
-		write(string, font=("Arial", 10, "normal"))
+
+		execution_time = time() - start_time
+		success_message = f"---------- \nCalculation Completed! \nFinally calculated PI is: {calc_pi} | Generated dots: {i} | Execution time: {execution_time}s"
+		print(success_message)
+		write(
+			success_message,
+			font=("Arial", 10, "normal")
+		)
 		up()
+		update() # force printing the new PI-Calculation to the screen
 
 ### don't close window automatically
 done()
