@@ -1,6 +1,8 @@
 # Random-Pi-Calculator
 
-> This GUI based program shows how to calculate Pi with random numbers
+> This GUI based program shows how to calculate the mathematical constant Pi with random numbers
+
+![GIF that shows program execution](example.gif)
 
 ## How to use this program?
 
