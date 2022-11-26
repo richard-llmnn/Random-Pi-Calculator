@@ -1,11 +1,11 @@
 ### setup constants
 # performance
-dot_amount = 1_000_000                      # amount of dots that will be generated
-max_visible_dots = 10                       # number of dots that are maximal displayed
-draw_speed = 0                              # speed to draw the complete coordinate system, 1: slowest, 6: normal, 10: fast, 0: fastest
-dot_generation_speed = 3                    # number between 0 and ~50, the higher the value, the slower the program
+dot_amount = 100_000                      # amount of dots that will be generated
+max_visible_dots = 1500                       # number of dots that are maximal displayed
+draw_speed = 8                              # speed to draw the complete coordinate system, 1: slowest, 6: normal, 10: fast, 0: fastest
+dot_generation_speed = 0                    # number between 0 and ~50, the higher the value, the slower the program
 log_pi_every_x_iteration = 10_000           # every x iteration the calculated-pi is printed to the console
-dot_print_tracer = 1                        # 1 = render each "object" to the window, x = render after x draws the objects to the window (the higher, the faster)
+dot_print_tracer = 10                        # 1 = render each "object" to the window, x = render after x draws the objects to the window (the higher, the faster)
 
 # visibility
 show_debug_information = False              # show debug logs
